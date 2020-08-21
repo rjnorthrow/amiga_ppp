@@ -1,12 +1,12 @@
 amiga_ppp
 =========
 
-With the appropriate USB to serial cable [like this one](https://plugable.com/products/pl2303-db9/), allow any Amiga with a working serial port and the [appropriate TCP/IP software](http://aminet.net/comm/net/AmiTCP-bin-30b2.lha) installed to access the internet or your local area network using any Raspberry Pi.
+With the appropriate USB to serial cable [like this one](https://plugable.com/products/pl2303-db9/), allow any Amiga with at least 1MiB RAM, Kickstart version 37 or higher and a working serial port and the [appropriate TCP/IP software](http://aminet.net/comm/net/AmiTCP-bin-30b2.lha) installed to access the internet or your local area network using any Raspberry Pi.
 
 Requirements
 ------------
 
-* Any Amiga with a working serial port, AmiTCP-3.0b2, a null-modem cable and a USB serial converter
+* Any Amiga with 1MiB RAM, Kickstart V37+ and a working serial port, AmiTCP-3.0b2, a null-modem cable and a USB serial converter
 * Any Raspberry Pi with a working internet connection running Raspberry Pi OS
 
 Role Variables
