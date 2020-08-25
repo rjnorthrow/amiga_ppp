@@ -1,12 +1,14 @@
 amiga_ppp
 =========
 
-With the appropriate USB to serial cable [like this one](https://plugable.com/products/pl2303-db9/), allow any Amiga with at least 1MiB RAM, Kickstart version 37 or higher and a working serial port and the [appropriate TCP/IP software](http://aminet.net/comm/net/AmiTCP-bin-30b2.lha) installed to access the internet or your local area network using any Raspberry Pi.
+NOTE: You may prefer [amiga_internet](https://github.com/rjnorthrow/amiga_internet) to this
+
+With the appropriate USB to serial cable [like this one](https://plugable.com/products/pl2303-db9/), allow any Amiga with at least 2MiB RAM but probably more like 4MiB, Kickstart version 37 or higher (Workbench 2+), a null modem cable with a 25-pin to 9-pin connector, a working serial port and the [appropriate TCP/IP software](http://aminet.net/comm/net/AmiTCP-bin-30b2.lha) installed to access the internet or your local area network using any Raspberry Pi.
 
 Requirements
 ------------
 
-* Any Amiga with 1MiB RAM, Kickstart V37+ and a working serial port, AmiTCP-3.0b2, a null-modem cable and a USB serial converter
+* Any Amiga with 2MiB+ RAM, Kickstart V37+ (Workbench 2+) and a working serial port, AmiTCP-3.0b2, a null-modem cable with 25-pin to 9-pin connector and a USB serial converter
 * Any Raspberry Pi with a working internet connection running Raspberry Pi OS
 
 Role Variables
@@ -100,7 +102,7 @@ Change to the `amiga-internet` directory
 
 ## Getting Started (Amiga)
 
-Any Amiga will do, with a working serial port
+Any reasonably spec'd Amiga will do, with a working serial port (see Requirements above)
 
 ### Install AmiTCP
 
@@ -129,8 +131,8 @@ When asked, choose the following options:
 * Login incorrect: There is a bug in the installation script, simply close the window
 * Enter the default user name: Put anything in here, such as your first name
 * Enter the host name of your computer: Put anything in here, such as `Amiga`
-* Enter the domain part of your host name: Put anythig in here, such as `example.com`
-* The host name will be stored to the environment variale HOSTNAME: `Store to ENV(ARC)` or `Use "setenv"`, it doesn't matter
+* Enter the domain part of your host name: Put anything in here, such as `example.com`
+* The host name will be stored to the environment variable HOSTNAME: `Store to ENV(ARC)` or `Use "setenv"`, it doesn't matter
 * Give aliases to your computer: `Proceed`
 * Select a SANA-II device driver: `ppp.device` - not listed? Download and install [this](http://m68k.aminet.net/comm/net/PPP1_45.lha)
 * Select unit number: `0`
@@ -158,7 +160,7 @@ At this point, the software is installed but not configured properly. Take the f
 
 `ed SYS:Internet/AmiTCP-3.0b2/db/interfaces` - Add the line: `ppp DEV=Devs/Networks/ppp.device` to bind `ppp0` to the `ppp` device
 
-`ed SYS:Internet/bin/startnet`:
+`ed SYS:Internet/AmiTCP-3.0b2/bin/startnet`:
 * Add a new line at the top: `online Devs:Networks/ppp.device 0`, this brings up the `ppp0` interface, configured above
 * Change `run AmiTCP:AmiTCP` to `run >NIL: AmiTCP:AmiTCP` to discard output from the command
 * Change `AmiTCP:bin/ifconfig lo/0 localhost` to `ifconfig lo0 localhost`, fixing the device name, and ifconfig is already in our path
